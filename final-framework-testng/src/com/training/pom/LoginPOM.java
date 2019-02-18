@@ -22,6 +22,10 @@ public class LoginPOM {
 	@FindBy(id="formLogin_submitAuth")
 	private WebElement loginBtn; 
 	
+	@FindBy(xpath="//*[@id=\"homepage-course\"]/div/p[1]")
+	public WebElement WelcomeScreen;
+	
+
 	public void sendUserName(String userName) {
 		this.userName.clear();
 		this.userName.sendKeys(userName);
