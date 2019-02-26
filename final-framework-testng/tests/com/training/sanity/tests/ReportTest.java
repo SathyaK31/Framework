@@ -30,6 +30,7 @@ public class ReportTest {
 	private ScreenShot screenShot;
 
 	@BeforeSuite
+	//Loading properties from property file
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
@@ -37,6 +38,7 @@ public class ReportTest {
 	}
 
 	@BeforeClass
+	//Initializing web driver 
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		// loginPOM = new LoginPOM(driver);
@@ -44,12 +46,14 @@ public class ReportTest {
 		screenShot = new ScreenShot(driver);
 		// open the browser
 		driver.get(baseUrl);
+		//Creating objects for POM
 		loginPOM = new LoginPOM(driver);
 		reportPOM=new ReportPOM(driver);
 	}
 
 
 	@BeforeMethod
+	//Login using credentials
 	public void Login() {
 		loginPOM.sendUserName("Sathya");
 		loginPOM.sendPassword("Sathya");
@@ -60,9 +64,11 @@ public class ReportTest {
 		
 	}
 @Test
+//Test to generate report
 public void Reporting() throws InterruptedException {
 	reportPOM.reportClick();
 	screenShot.captureScreenShot("Testcase7_3");
+	// using java script executor for scrolling the window 
 	 JavascriptExecutor js = (JavascriptExecutor) driver;
 	js.executeScript("arguments[0].scrollIntoView();", reportPOM.studentSelect);
 	reportPOM.StudentSelect();
@@ -71,6 +77,7 @@ public void Reporting() throws InterruptedException {
 	screenShot.captureScreenShot("Testcase7_4");
 	reportPOM.Submit();
 	Thread.sleep(2000);
+	// steps to verify dislay message
 	String actual=reportPOM.Verify();
 	String expected="Message Sent";
 	Assert.assertEquals(actual, expected);

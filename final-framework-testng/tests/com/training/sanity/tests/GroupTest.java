@@ -31,6 +31,7 @@ public class GroupTest {
 	private ScreenShot screenShot;
 
 	@BeforeSuite
+	//Loading properties from property file
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
@@ -38,6 +39,7 @@ public class GroupTest {
 	}
 
 	@BeforeClass
+	//initialize driver and creating objects for POM
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		// loginPOM = new LoginPOM(driver);
@@ -52,6 +54,7 @@ public class GroupTest {
 
 
 	@Test(priority=1)
+	//Login test and passing credentials
 	public void Login() {
 		//driver.manage().timeouts().implicitlyWait(1000,TimeUnit.SECONDS);
 		loginPOM.sendUserName("Sathya");
@@ -62,12 +65,17 @@ public class GroupTest {
 		screenShot.captureScreenShot("Testcase8_2");
 }
 	@Test(priority=2)
+
 	public void GroupCreation() {
 		//driver.manage().timeouts().implicitlyWait(1000,TimeUnit.SECONDS);
+		// step 1. Click on Groups icon
 		groupPOM.groupIconClick();
+		//Step 2. click on create new group icon
 		groupPOM.clickCreateGroup();
+		// pasing no of groups
 		groupPOM.sendGroupNum("1");
 		groupPOM.Proceed();
+		// passing group name
 		groupPOM.PassGroupName("Rockers");
 		groupPOM.createGroup();
 		groupPOM.GroupMemClick();
@@ -81,6 +89,7 @@ public class GroupTest {
 		
 		
 	}
+	// test for verifying the text displayed
 	@Test(priority = 3)
 	public void saveText() {
 		groupPOM.displayText();

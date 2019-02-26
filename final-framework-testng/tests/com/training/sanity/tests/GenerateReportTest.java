@@ -35,6 +35,7 @@ public class GenerateReportTest {
 	private ScreenShot screenShot;
 
 	@BeforeSuite
+	// Loading properties from property file
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
@@ -55,6 +56,7 @@ public class GenerateReportTest {
 	}
 
 	@Test(priority=1)
+	// login test and passing credentials
 	public void Login() {
 		loginPOM.sendUserName("Sathya");
 		loginPOM.sendPassword("Sathya");
@@ -64,22 +66,25 @@ public class GenerateReportTest {
 	}
 
 	@Test(priority = 2)
+	//this method is to generate report
 	public void Reporting() throws InterruptedException {
 		generatereportPOM.Reportclick();
 		screenShot.captureScreenShot("Testcase9_3");
 		generatereportPOM.FollowedStudentClick();
 		generatereportPOM.keyword("sathya");
 		generatereportPOM.searchbtn();
+		// need to scroll page to view the element . hence using javascript
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView();", generatereportPOM.arrow);
 		generatereportPOM.arrowClick();
 		js.executeScript("arguments[0].scrollIntoView();", generatereportPOM.courseArrow);
 		generatereportPOM.CourseClick();
 		generatereportPOM.QuicIcon();
+		//For sending mail and click on submit
 		generatereportPOM.SendEmail();
 		generatereportPOM.CorrectTest();
 	}
-
+// This method is to verify the display text
 	@Test(priority = 3)
 	public void assertion() {
 		try {

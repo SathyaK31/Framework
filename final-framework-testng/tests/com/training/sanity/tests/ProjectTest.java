@@ -31,6 +31,7 @@ public class ProjectTest {
 	private ScreenShot screenShot;
 
 	@BeforeSuite
+	//Fetching properties form property file
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
@@ -38,6 +39,7 @@ public class ProjectTest {
 	}
 
 	@BeforeClass
+	//initialize driver and object creation for POM
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		// loginPOM = new LoginPOM(driver);
@@ -53,6 +55,7 @@ public class ProjectTest {
 
 	@Test(priority = 1)
 	public void Login() {
+		// Login method and passing parameter for username and password
 		loginPOM.sendUserName("Sathya");
 		loginPOM.sendPassword("Sathya");
 		loginPOM.clickLoginBtn();
@@ -61,7 +64,7 @@ public class ProjectTest {
 		screenShot.captureScreenShot("Testcase10_2");
 
 	}
-
+// this method is to select project and update project details
 	@Test(priority = 1)
 	public void project() {
 		projectPOM.ProjectClick();
@@ -70,7 +73,6 @@ public class ProjectTest {
 		projectPOM.AddSubTitle("e-learning Project");
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView();",projectPOM.submit);
-		
 		projectPOM.submit();
 		screenShot.captureScreenShot("Testcase10_3");
 		projectPOM.ClickProject();
@@ -95,6 +97,7 @@ public class ProjectTest {
 		screenShot.captureScreenShot("Testcase10_7");
 		
 	}
+	// method for verification
 	@Test(priority=2)
 	public void assertion() {
 		try {

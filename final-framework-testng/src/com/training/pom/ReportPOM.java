@@ -11,6 +11,8 @@ public class ReportPOM {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
+	
+	//Webelement for click on course
 	@FindBy(xpath="//*[@id=\"page\"]/div/div[2]/div/div/div[2]/h4/a[1]")
 
 	WebElement clickCourse;
@@ -18,7 +20,7 @@ public class ReportPOM {
 	public void courseClick() {
 		this.clickCourse.click(); 
 	}
-	
+	//Webelement for report icon
 	@FindBy(xpath="//img[@id='toolimage_3065']")
 	WebElement ReportIcon;
 	
@@ -27,16 +29,14 @@ public class ReportPOM {
 		
 	}
 	//@FindBy(linkText="2rightarrow.png")
-	@FindBy(xpath="//table[1]/tbody[1]/tr[4]/td[16]/center[1]/a[1]/img[1]")
-	
-	//@FindBy(xpath="//table[1]/tbody[1]/tr[4]/td[16]/center[1]/a[1]//img[@title='2rightarrow.png']")
-	public
-		WebElement studentSelect;
+	// Element for selecting Student
+	@FindBy(xpath="//table[1]/tbody[1]/tr[4]/td[16]/center[1]/a[1]/img[1]")	
+	public WebElement studentSelect;
 	
 	public void StudentSelect() {
 		this.studentSelect.click();
 	}
-	
+	//WebElement for clicking Quiz icon
 	@FindBy(xpath="//img[@title='quiz.png']")
 	WebElement quizIcon;
 	
@@ -44,35 +44,36 @@ public class ReportPOM {
 		this.quizIcon.click();
 	}
 	
-	
+	//WebElement for clicking check box notification
 	@FindBy(name="send_notification")
 	WebElement sendMail;
 	
 	public void selectNotification() {
 		this.sendMail.click();
 		
-	}
+	}	
+	//Web element for correct test 
 	@FindBy(name="submit")
 	WebElement CorrectTest;
 	
 	public void Submit() {
 		this.CorrectTest.click();
 	}
-	
+	//Webelement for display text
 	@FindBy(xpath=" //div[@class='alert alert-info']")
 	WebElement verifyMsg;
 	
 	public String Verify() {
 		return this.verifyMsg.getText();
 	}
-	
+	//Webelement for course link
 	@FindBy(xpath="//a[contains(text(),'Selenium')]")
 	WebElement courseLink;
 	
 	public void clickCourseLink() {
 		this.courseLink.click();
 	}
-	
+	// Webelement for go to main page
 	@FindBy(xpath="//a[contains(text(),'Selenium')]")
 	WebElement mainpage;
 	

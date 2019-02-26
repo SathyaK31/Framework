@@ -30,6 +30,7 @@ public class AssignmentCorrectionTest {
 	private ScreenShot screenShot;
 
 	@BeforeSuite
+	//Loading properties form property file
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
@@ -37,6 +38,7 @@ public class AssignmentCorrectionTest {
 	}
 
 	@BeforeClass
+	//initialize driver and url
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		// loginPOM = new LoginPOM(driver);
@@ -44,15 +46,12 @@ public class AssignmentCorrectionTest {
 		screenShot = new ScreenShot(driver);
 		// open the browser
 		driver.get(baseUrl);
-	}
-
-	@BeforeMethod
-	public void CreatingObjects() {
+	//Creating objects for POM
 		loginPOM = new LoginPOM(driver);
 		courseDescription = new courseDescriptionPOM(driver);
 		assignmentCorrection=new AssignmentCorrectionPOM(driver);
 	}
-
+// Login using credentials
 	@Test(priority = 1)
 	public void Login() {
 		loginPOM.sendUserName("Sathya");
@@ -65,6 +64,7 @@ public class AssignmentCorrectionTest {
 
 	
 @Test(priority=2)
+//This method is to correct the assignment and verify assert statement
 public void assignmentCorect() throws InterruptedException {
 	assignmentCorrection.TestLink();
 	
@@ -74,7 +74,7 @@ public void assignmentCorect() throws InterruptedException {
 	assignmentCorrection.SendNotification();
 	screenShot.captureScreenShot("Testcase6_3");
 	assignmentCorrection.Submit();
-	
+	// for assertion of display text
 	String actual=assignmentCorrection.Verify();
 	String expected="Message Sent";
 	Assert.assertEquals(actual, expected);
