@@ -31,6 +31,7 @@ public class unSubscriptionTest {
 	private ScreenShot screenShot;
 
 	@BeforeSuite
+	// To load properties 
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
@@ -38,6 +39,7 @@ public class unSubscriptionTest {
 	}
 
 	@BeforeClass
+	//driver initializing
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		// loginPOM = new LoginPOM(driver);
@@ -48,6 +50,7 @@ public class unSubscriptionTest {
 	}
 
 	@BeforeMethod
+	//Creating objects for POM files
 	public void CreatingObjects() {
 		loginPOM = new LoginPOM(driver);
 		// addCourse = new AddCourse(driver);
@@ -60,6 +63,7 @@ public class unSubscriptionTest {
 	 * driver.quit(); }
 	 */
 	@Test(priority = 1)
+	//login steps 
 	public void TestCase1() {
 		loginPOM.sendUserName("Sathya");
 		loginPOM.sendPassword("Sathya");
@@ -69,6 +73,7 @@ public class unSubscriptionTest {
 	}
 
 	@Test(priority = 2)
+	//method for unsubscription
 	public void clickUser() {
 		unSubscribe.courseClick();
 		screenShot.captureScreenShot("Testcase4_second");
@@ -77,7 +82,7 @@ public class unSubscriptionTest {
 		unSubscribe.toUnsubscribe();
 		screenShot.captureScreenShot("Testcase4_3");
 		driver.switchTo().alert().accept();
-
+// verifying the text displayed
 		try {
 			unSubscribe.displayText.isDisplayed();
 			String actual = unSubscribe.displayText();

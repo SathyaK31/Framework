@@ -28,6 +28,7 @@ public class courseCatalogTest {
 	private ScreenShot screenShot;
 
 	@BeforeSuite
+	// to load properties 
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
@@ -35,6 +36,7 @@ public class courseCatalogTest {
 	}
 
 	@BeforeClass
+	// iniatialize driver object creation for POM
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		// loginPOM = new LoginPOM(driver);
@@ -45,6 +47,7 @@ public class courseCatalogTest {
 	}
 
 	@BeforeMethod
+	//object creation for POM
 	public void CreatingObjects() {
 		loginPOM = new LoginPOM(driver);
 		// addCourse = new AddCourse(driver);
@@ -53,6 +56,7 @@ public class courseCatalogTest {
 	}
 
 	@Test(priority = 1)
+	//login method
 	public void Login() {
 		loginPOM.sendUserName("Sathya");
 		loginPOM.sendPassword("Sathya");
@@ -62,6 +66,7 @@ public class courseCatalogTest {
 	}
 
 	@Test(priority = 2)
+	//method to course catalog
 	public void courseCatalog() {
 		courseCatalog.clickCourseCatalog();
 		courseCatalog.searchKey("Selenium");

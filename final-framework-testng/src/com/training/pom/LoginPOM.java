@@ -13,15 +13,21 @@ public class LoginPOM {
 		PageFactory.initElements(driver, this);
 	}
 	
+	//Webelement for sending username
 	@FindBy(id="login")
 	private WebElement userName; 
 	
+	
+	//Webelement for sending password
 	@FindBy(id="password")
 	private WebElement password;
 	
+	
+	//Webelement for clickon login submit 
 	@FindBy(id="formLogin_submitAuth")
 	private WebElement loginBtn; 
 	
+	//Webelement for welcome screen text
 	@FindBy(xpath="//*[@id=\"homepage-course\"]/div/p[1]")
 	public WebElement WelcomeScreen;
 	

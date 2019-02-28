@@ -33,6 +33,7 @@ public class courseDescriptionAddTests {
 	private ScreenShot screenShot;
 
 	@BeforeSuite
+	// to load properties from property file
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
@@ -40,6 +41,7 @@ public class courseDescriptionAddTests {
 	}
 
 	@BeforeClass
+	//inializing driver
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		// loginPOM = new LoginPOM(driver);
@@ -50,6 +52,7 @@ public class courseDescriptionAddTests {
 	}
 
 	@BeforeMethod
+	//creating object for POM file
 	public void CreatingObjects() {
 		loginPOM = new LoginPOM(driver);
 		// addCourse = new AddCourse(driver);
@@ -62,6 +65,7 @@ public class courseDescriptionAddTests {
 	 * driver.quit(); }
 	 */
 	@Test(priority = 1)
+	// method to login
 	public void TestCase1() {
 		loginPOM.sendUserName("Sathya");
 		loginPOM.sendPassword("Sathya");
@@ -71,6 +75,7 @@ public class courseDescriptionAddTests {
 	}
 
 	@Test(priority = 2)
+	//method to write description forcourse
 	public void clickDescription() {
 		courseDescription.courseClick();
 		screenShot.captureScreenShot("Testcase3_2");
@@ -83,6 +88,7 @@ public class courseDescriptionAddTests {
 	}
 
 	@Test(priority = 3)
+	// IFrame Text passing html keys
 	public void frameTest() {
 
 		List<WebElement> frameList = driver.findElements(By.tagName("iframe"));
@@ -94,6 +100,7 @@ public class courseDescriptionAddTests {
 	}
 
 	@Test(priority = 4)
+	// To verify display text
 	public void saveText() {
 		courseDescription.save();
 		try {

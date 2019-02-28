@@ -31,7 +31,7 @@ public class AddCourse_test {
 	private AddCourse addCourse;
 	private static Properties properties;
 	private ScreenShot screenShot;
-
+// for loading properties from property file
 	@BeforeSuite
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
@@ -39,6 +39,7 @@ public class AddCourse_test {
 		properties.load(inStream);
 	}
 
+	// for initializing driver  
 	@BeforeClass
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
@@ -50,6 +51,7 @@ public class AddCourse_test {
 	}
 
 	@BeforeMethod
+	//object creation of POM files
 	public void PreTestCondition() {
 		loginPOM = new LoginPOM(driver);
 		addCourse = new AddCourse(driver);
@@ -61,6 +63,7 @@ public class AddCourse_test {
 	 * driver.quit(); }
 	 */
 	@Test(priority = 1)
+	//TEst method to add course based on the steps given in test case
 	public void TestCase2() {
 		loginPOM.sendUserName("Sathya");
 		loginPOM.sendPassword("Sathya");
@@ -76,17 +79,20 @@ public class AddCourse_test {
 	}
 
 	@Test(priority = 2)
+	//sending frame text into html editor 
+	// IFRAME Concept
 	public void frameTest() {
 
 		List<WebElement> frameList = driver.findElements(By.tagName("iframe"));
 		driver.switchTo().frame(0);
 		WebElement frame = driver.findElement(By.xpath("/html"));
 		frame.sendKeys("This is new Course");
-
+// moving back to original window i.e moving out from iframe
 		driver.switchTo().defaultContent();
 	}
 
 	@Test(priority = 3)
+	//this method is to verify the display text
 	public void saveText() {
 		addCourse.saveText();
 		try {

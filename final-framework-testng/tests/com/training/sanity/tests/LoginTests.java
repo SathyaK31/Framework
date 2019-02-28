@@ -30,6 +30,7 @@ public class LoginTests {
 	private ScreenShot screenShot;
 
 	@BeforeSuite
+	//method is to load properties
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
@@ -37,6 +38,7 @@ public class LoginTests {
 	}
 
 	@BeforeClass
+	//Initializing driver object
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		//loginPOM = new LoginPOM(driver); 
@@ -46,6 +48,7 @@ public class LoginTests {
 		driver.get(baseUrl);
 	}
 	@BeforeMethod
+	//Creating objects for POM files
 	public void CreatingObjects() {
 		loginPOM = new LoginPOM(driver); 
 		addCourse =new AddCourse(driver);
@@ -53,6 +56,7 @@ public class LoginTests {
 	}
 	
 	@Test
+	//To test the welcome screen message
 	public void TestCase1() {
 		loginPOM.sendUserName("Sathya");
 		loginPOM.sendPassword("Sathya");

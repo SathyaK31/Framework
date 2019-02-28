@@ -14,42 +14,54 @@ private WebDriver driver;
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
+	//Webelement for finding create course
 	@FindBy(linkText="Create a course")
 	WebElement CreateCourse;
 	
+	//Webelement for courseTitle
 	@FindBy(id="title")
 	WebElement CourseTitle;
 	
+	//Webelement for finding Advance Settings
 	@FindBy(id="advanced_params")
 	WebElement AdvanceSettings;
 	
+	//WebElement for fetch Dropdown
 	@FindBy(id="add_course_category_code")
 	WebElement DropdownCategory;
 	
+	//Webelement for course code
 	@FindBy(id="add_course_wanted_code")
 	WebElement CourseCode;
 	
+	//Webelement for course language
 	@FindBy(id="add_course_course_language")
 	WebElement CourseLang;
 	
+	//Webelement for click Template
 	@FindBy(id="select2-add_course_course_template-container")
 	WebElement Template;
 	
+	
+	//Webelement for add course
 	@FindBy(id="add_course_submit")
 	WebElement addCourse;
 	
-	//@FindBy(linkText="Add an introduction text")
+	//Webelement for add introduction Text
 	@FindBy(xpath="//*[@id=\"course_tools\"]/div[1]/div/div[1]/a")
 	//@FindBy(className="btn btn-default")
 	WebElement courseIntro;
 	
+	//Webelement for html editor
 	@FindBy(xpath="/html")
 	WebElement Editor;
 	
+	//Webelement for Display text
 	@FindBy(xpath="//*[@id=\"content-section\"]/div/div[2]/div/div")
 	public
 	WebElement displayText;
 	
+	//Webelement for click on save
 	@FindBy(id="introduction_text_intro_cmdUpdate")
 	WebElement saveText;
 	
