@@ -22,7 +22,7 @@ import com.training.pom.AddCourse;
 import com.training.pom.LoginPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+// objective is to add course 
 public class AddCourse_test {
 
 	private WebDriver driver;
@@ -69,10 +69,10 @@ public class AddCourse_test {
 		loginPOM.sendPassword("Sathya");
 		loginPOM.clickLoginBtn();
 		addCourse.clickCreateCourse();
-		addCourse.sendCourseTitle("Selenium");
+		addCourse.sendCourseTitle("Selenium By Trainer Sathya");
 		addCourse.clickAdvancedSettings();
 		addCourse.category(2);
-		addCourse.CourseCode("Selenium5");
+		addCourse.CourseCode("Selenium1234");
 		addCourse.CourseLang("english");
 		addCourse.addCourseClick();
 		addCourse.courseIntro();

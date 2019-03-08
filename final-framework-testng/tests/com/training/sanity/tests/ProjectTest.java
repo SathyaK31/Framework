@@ -19,7 +19,7 @@ import com.training.pom.ProjectPOM;
 import com.training.pom.ReportPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+//objective is to registering to project ,select project and update project details
 public class ProjectTest {
 
 	private WebDriver driver;

@@ -32,8 +32,12 @@ public class ReadExcel {
 					for (int j=0; j < totalNoOfCols; j++) 
 					{
 						arrayExcelData[i-1][j] = sh.getCell(j, i).getContents();
+						System.out.println(arrayExcelData[i-1][j]);
 					}
+					
+					
 				}
+				
 			}catch (IOException | BiffException e) 
 			{
 				e.printStackTrace();
@@ -43,7 +47,7 @@ public class ReadExcel {
 
 	// Test method, change the path of the .xls file 
 	public static void main(String[] args) {
-		String[][] result = new ReadExcel().getExcelData("C:/Users/Naveen/Desktop/Testing.xls", "Sheet1"); 
+		String[][] result = new ReadExcel().getExcelData("C:/Users/SathyaK/Desktop/SELENIUM TRAINING/Project/TestData.xls", "Sheet1"); 
 		
 		for(String [] temp : result){
 			for(String temp1: temp){

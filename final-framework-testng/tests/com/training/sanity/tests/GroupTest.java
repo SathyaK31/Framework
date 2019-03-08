@@ -19,7 +19,7 @@ import com.training.pom.LoginPOM;
 import com.training.pom.ReportPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+//Objective is to add groups and settings
 public class GroupTest {
 	private static final TimeUnit TimeUnit = null;
 	private WebDriver driver;

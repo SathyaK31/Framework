@@ -19,7 +19,7 @@ import com.training.pom.courseCatalogPOM;
 import com.training.pom.courseDescriptionPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+//Objective is to correct the assignment and send email notification
 public class AssignmentCorrectionTest {
 	private WebDriver driver;
 	private String baseUrl;

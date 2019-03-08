@@ -26,6 +26,14 @@ public class GenerateReportPOM {
 	public void FollowedStudentClick() {
 		this.studentLink.click();
 	}
+	
+	// Element for followed Teacher
+	@FindBy(linkText="Followed teachers")
+	WebElement TeacherLink;
+	
+	public void TeacherClick() {
+		this.TeacherLink.click();
+	}
 	//ELement for search keyword
 	@FindBy(id="search_user_keyword")
 	WebElement keyword;

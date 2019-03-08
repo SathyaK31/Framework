@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -19,6 +20,7 @@ import com.training.generics.ScreenShot;
 import com.training.pom.LoginPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
+// This is for the test case to check whether the data stored in database is same as per our input 
 
 public class LoginDBTest {
 	private WebDriver driver;
@@ -26,9 +28,9 @@ public class LoginDBTest {
 	private LoginPOM loginPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
-	private GenericMethods genericMethods; 
-	
-	
+	private GenericMethods genericMethods;
+
+	// to load properties from property file
 	@BeforeClass
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
@@ -36,34 +38,34 @@ public class LoginDBTest {
 		properties.load(inStream);
 	}
 
+//// initialize driver an dobjects for POM
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver);
-		genericMethods = new GenericMethods(driver); 
+		genericMethods = new GenericMethods(driver);
 		// open the browser
 		driver.get(baseUrl);
 	}
 
+// after test it will execute
 	@AfterMethod
 	public void tearDown() throws Exception {
 		Thread.sleep(1000);
 		driver.quit();
 	}
 
-
 	@Test(dataProvider = "db-inputs", dataProviderClass = LoginDataProviders.class)
 	public void loginDBTest(String userName, String password) {
-		// for demonstration 
-//		genericMethods.getElement("login", "id"); 
-				
-		loginPOM.sendUserName(userName);
-		
-		loginPOM.sendPassword(password);
+
+		String username = loginPOM.sendUserName("admin");
+
+		String passWord = loginPOM.sendPassword("admin@123");
 		loginPOM.clickLoginBtn();
-		
+		Assert.assertEquals(username, userName);
+		Assert.assertEquals(passWord, password);
 		screenShot.captureScreenShot(userName);
 
 	}

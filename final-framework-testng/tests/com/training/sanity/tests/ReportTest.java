@@ -20,7 +20,7 @@ import com.training.pom.ReportPOM;
 import com.training.pom.courseDescriptionPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+// Objective is to send report to the followed students by the trainer
 public class ReportTest {
 	private WebDriver driver;
 	private String baseUrl;

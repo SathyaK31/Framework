@@ -18,7 +18,7 @@ import com.training.pom.courseCatalogPOM;
 import com.training.pom.unSubscriptionPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+// Objectve is to add Course in course catalog
 public class courseCatalogTest {
 	private WebDriver driver;
 	private String baseUrl;

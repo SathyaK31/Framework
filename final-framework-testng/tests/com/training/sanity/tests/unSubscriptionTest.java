@@ -19,7 +19,7 @@ import com.training.pom.courseDescriptionPOM;
 import com.training.pom.unSubscriptionPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+// Objective is to unsubscribe the user from the course
 public class unSubscriptionTest {
 	private WebDriver driver;
 	private String baseUrl;

@@ -19,7 +19,7 @@ import com.training.pom.AddCourse;
 import com.training.pom.LoginPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+//Objective is to check login and welcome screen
 public class LoginTests {
 
 	private WebDriver driver;

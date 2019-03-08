@@ -36,7 +36,14 @@ private WebDriver driver;
 	public void searchKey(String course) {
 		this.searchKey.sendKeys(course);
 	}
+	// for dynamic course selection
+	@FindBy(xpath="//input[@name='search_term']")
+	WebElement searchcourseName;
 	
+	public String CourseName() {
+		String Course=this.searchcourseName.getText();
+		return Course;
+	}
 	public void search() {
 		this.search.click();
 	}

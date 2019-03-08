@@ -25,7 +25,7 @@ import com.training.pom.LoginPOM;
 import com.training.pom.ReportPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+// Objective is to click on report tab and generate report for the student
 public class GenerateReportTest {
 	private WebDriver driver;
 	private String baseUrl;

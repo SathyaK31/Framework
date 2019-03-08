@@ -15,7 +15,8 @@ import com.training.generics.ScreenShot;
 import com.training.pom.LoginPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+//To verify whether application allows admin to add multiple new user as a trainer 
+//by entering valid credentials in mandatory fields only
 public class LoginMultipleValuesTest {
 	private WebDriver driver; 
 	private String baseUrl; 

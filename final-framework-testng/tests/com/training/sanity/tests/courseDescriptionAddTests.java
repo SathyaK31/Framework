@@ -21,7 +21,7 @@ import com.training.pom.LoginPOM;
 import com.training.pom.courseDescriptionPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+// objective is to update course description 
 public class courseDescriptionAddTests {
 
 	private WebDriver driver;

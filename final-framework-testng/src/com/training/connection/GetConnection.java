@@ -1,5 +1,7 @@
 package com.training.connection;
 
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,6 +20,7 @@ public class GetConnection {
 		try {
 			// load 
 			Class.forName(dbBean.getDriver());
+			System.out.println("class found");
 			connection = DriverManager.getConnection(dbBean.getUrl() , 
 					dbBean.getUserName(), dbBean.getPassword());
 			
