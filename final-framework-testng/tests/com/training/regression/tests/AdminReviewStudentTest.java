@@ -5,6 +5,10 @@ import org.testng.annotations.Test;
 import com.training.generics.ScreenShot;
 import com.training.pom.AdminReviewStudentTestPOM;
 import com.training.pom.AssignmentCorrectionPOM;
+import com.training.pom.LoginPOM;
+import com.training.pom.StudentPOM;
+import com.training.pom.courseCatalogPOM;
+import com.training.pom.courseDescriptionPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
@@ -20,12 +24,15 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
-//Objective is to create test 
-public class ReportingEndToEnd {
+public class AdminReviewStudentTest {
 	private WebDriver driver;
 	private String baseUrl;
 	private AdminReviewStudentTestPOM reviewPOM;
+	private LoginPOM loginPOM;
 	private static AssignmentCorrectionPOM assignmentCorrection;
+	private courseCatalogPOM courseCatalog;
+	private StudentPOM studentPOM;
+	private courseDescriptionPOM courseDescription;
 	private static Properties properties;
 	private ScreenShot screenShot;
 	
@@ -37,7 +44,11 @@ public class ReportingEndToEnd {
 		properties.load(inStream);
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		reviewPOM = new AdminReviewStudentTestPOM(driver); 
+		loginPOM=new LoginPOM(driver);
 		assignmentCorrection = new AssignmentCorrectionPOM(driver);
+		courseCatalog = new courseCatalogPOM(driver);
+		studentPOM = new StudentPOM(driver);
+		courseDescription = new courseDescriptionPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -55,9 +66,9 @@ public class ReportingEndToEnd {
   @Test(priority=1)
    public void studentLogin()
    {
-	    reviewPOM.sendUserName("Sathya");
-	    reviewPOM.sendPassword("Gautham@123");
-	    reviewPOM.clickLoginBtn(); 
+	    loginPOM.sendUserName("Sathya");
+	    loginPOM.sendPassword("Sathya");
+	    loginPOM.clickLoginBtn(); 
 	    String expected = "Profile";
 	    String actual = driver.findElement(By.linkText("Profile")).getText();
 	    assertEquals(actual, expected);
@@ -76,46 +87,72 @@ public class ReportingEndToEnd {
 	    
    }
   
-  //Student should be able to click on particular course and take test
-  @Test(priority=3)
-   public void studentTakeTest()
-   {  
-	    reviewPOM.sendUserName("Sathya_s");
-	    reviewPOM.sendPassword("student");
-	    reviewPOM.clickLoginBtn(); 
-	    reviewPOM.clickOnCourses();
-        reviewPOM.sendSearchCourse("SELENIUM COMPLEX");
-        reviewPOM.clickSearchBtn();
-        reviewPOM.clickCourseLink();
-        reviewPOM.clickOnTests();
-        reviewPOM.clickOnTestLink();
+  
+  
+//Student login
+	@Test(priority = 3)
+	public void StudentLogin() {
+		loginPOM.sendUserName("sathya_s");
+		loginPOM.sendPassword("student");
+		loginPOM.clickLoginBtn();
+		screenShot.captureScreenShot("Login Student");
+
+	}
+
+	// Student register for test
+	@Test(priority = 4)
+	public void CourseTest() {
+
+		courseCatalog.clickCourseCatalog();
+		courseCatalog.searchKey("Selenium by Sathya");
+		courseCatalog.CourseName();
+		screenShot.captureScreenShot("*****");
+		courseCatalog.search();
+		screenShot.captureScreenShot("******");
+		studentPOM.Subscribe();
+		// using the select course using course description pom since we wrote already
+		// course name is returning from the course catalog which we pass in search key
+		studentPOM.CourseClick(courseCatalog.CourseName());
+		// using the test link which we created already in assignment correction POM
+		studentPOM.ClickTest(courseCatalog.CourseName());
+		// dynamically passing test name which trainer created
+		studentPOM.testNameClick(reviewPOM.Testname());
+		reviewPOM.clickOnTestLink();
         reviewPOM.clickOnStartTest();
         reviewPOM.selectFirstAns();
         reviewPOM.clickNextButton();
         reviewPOM.selectSecondAns();
         reviewPOM.clickOnEndTest();
 	    screenShot.captureScreenShot("StudentTest");
-	    String expected = "online quiz : Result";
-	    String actual = driver.findElement(By.xpath("//H2[@class='page-header']")).getText();
-	    assertEquals(actual, expected);
 	    reviewPOM.clickLogout();
-	    
-   }
-  
-  //Admin should be able to review test and send mail
-  @Test(priority=4)
-   public void adminReviewTest()
-   {  
-	    reviewPOM.sendUserName("admin");
-	    reviewPOM.sendPassword("admin@123");
-	    reviewPOM.clickLoginBtn(); 
-	    reviewPOM.clickReportingBtn(); 
-	    reviewPOM.followedStdntsLink();
-	    reviewPOM.performAdminReview();
-	   
-   }
-//For assertion
+	}
+
+//login as teacher
 	@Test(priority = 5)
+	public void AdminLogin() {
+		loginPOM.sendUserName("Sathya");
+		loginPOM.sendPassword("Sathya");
+		loginPOM.clickLoginBtn();
+		screenShot.captureScreenShot("login");
+
+	}
+
+//test correction
+	@Test(priority = 6)
+	public void TestCorrection() {
+		studentPOM.CourseClick(courseCatalog.CourseName());
+		assignmentCorrection.TestLink();
+		studentPOM.ClickTest(courseCatalog.CourseName());
+		assignmentCorrection.Result();
+		assignmentCorrection.grade();
+		assignmentCorrection.SendNotification();
+		screenShot.captureScreenShot("Testcase6_3");
+		assignmentCorrection.Submit();
+
+	}
+
+	// For assertion
+	@Test(priority = 7)
 	public static void assertion() {
 		try {
 
@@ -132,7 +169,5 @@ public class ReportingEndToEnd {
 	/*
 	 * @AfterClass public void tearDown() throws Exception { driver.quit(); }
 	 */
-   
-
 
 }
